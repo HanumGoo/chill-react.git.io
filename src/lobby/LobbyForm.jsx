@@ -17,7 +17,7 @@ function LobbyForm() {
   return (
     <>
     <div className='containerLobbyBody'>
-      {/* bagian user dan pemilihan menu */}
+      
       <div className='displayFlexLobby1'>
         <div className='usercontent1'>
           <img className='chillLogoLobby' src={chillLogo} title="haha" />
@@ -33,15 +33,15 @@ function LobbyForm() {
       </div>
 
       {/* bagian isi content pertama */}
-      <div className='containerFirst'>``
+      <div className='containerFirst'>
         <div className='firstImageBackground'>
 
           <div className='InformationFirst'>
             <h1>Duty After School</h1>
             <br />
-            <p>Sebuah benda tak dikenal mengambil alih dunia. Dalam keputusasaan,</p>
-            <p>Departemen Pertahanan mulai merekrut lebih banyak tentara, termasuk siswa</p>
-            <p>sekolah menengah. Mereka pun segera menjadi pejuang garis depan dalam perang.</p>
+            <p className='displayNone'>Sebuah benda tak dikenal mengambil alih dunia. Dalam keputusasaan,</p>
+            <p className='displayNone'>Departemen Pertahanan mulai merekrut lebih banyak tentara, termasuk siswa</p>
+            <p className='displayNone'>sekolah menengah. Mereka pun segera menjadi pejuang garis depan dalam perang.</p>
           </div>
           <div className='InformationSecond'>
             <div className='usercontent1-1'>
@@ -50,12 +50,12 @@ function LobbyForm() {
                 <img src={vector} className='vectorClass'/>
                 <p>Selengkapnya</p>
               </button>
-              <div>
+              <div className=' displayNone'>
               <p onMouseEnter={() => isHovered(true)} onMouseLeave={() => isHovered(false)} className="category18">18+</p>
               <span className={hovered ? "myspanClass categorypopup18" : "myspanClass"}>hanya untuk orang dewasa. jika belum minum susu dulu sana!</span>
               </div>
             </div>
-            <div className='usercontent2'>
+            <div className='displayNone'>
               <img src={audio} className='audioClass' />
             </div>
           
