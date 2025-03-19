@@ -95,6 +95,26 @@
       .imagePopupMenu {
         display: none !important;
       }
+
+      .ProfileFlexParent {
+        flex-direction: column;
+        gap: 50px;
+      }
+
+      .ProfileFlexMain {
+        width: 100% !important;
+      }
+
+      .ProfileFlexMain1 {
+        width: 95% !important;
+      }
+      .inputChangeAccount {
+        width: 95% !important;
+      }
+
+      .theImageClass {
+        transform: translate(70vw, 11px) !important;
+      }
     
 
 }
@@ -389,6 +409,15 @@ p {
     border-radius: 100%;
     /* border: 2px solid black; */
     object-fit: cover;
+}
+
+.accountLogoLobby1 {
+  width: 140px;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 100%;
+  /* border: 2px solid black; */
+  object-fit: cover;
 }
 
 .containerFirst {
@@ -829,4 +858,229 @@ p {
     font-size: 1vw;
     height: 1.5vw;
     border-radius: 24px;
+  }
+
+  .ProfileFlexParent {
+    width: 85%;
+    padding: 5vw;
+    display: flex;
+    border: 1px solid yellow;
+    align-self: center;
+    position: relative;
+  }
+
+  .ProfileFlexMain {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    gap: 2vh;
+    position: relative;
+  }
+
+  .ProfileFlexMain1 {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 30%;
+    gap: 2vh;
+    position: relative;
+    background-color: hsla(192, 4%, 25%, 1);
+    padding: 2vw;
+    border-radius: 12px;
+  }
+
+  .ProfileFlex1 {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+  }
+
+  .profileFlex2 {
+    display: flex;
+    flex-direction: column;
+    gap : 0.6vw;
+}
+
+  .ProfileFlex3 {
+    display: flex;
+    gap: 0.2vw;
+  }
+
+  .changeImageButton {
+    all: unset;
+    cursor: pointer;
+    color: hsla(230, 100%, 60%, 1);
+    border-radius: 48px;
+    border: 1px solid hsla(230, 100%, 60%, 1);
+    text-align: center;
+    height: 42px;
+  }
+
+  .changeImageButton:hover {
+    background-color: rgb(96, 121, 243);
+  }
+
+  .inputChangeAccount {
+    width: 80%;
+    background-color: hsla(195, 11%, 15%, 1);
+    border: 1px solid hsla(250, 81%, 94%, 0.23);
+    border-radius: 8px;
+    height: 38px;
+    color: white;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+  }
+
+  .activeInputChangeAccount {
+    background-color: rgb(76, 85, 88);
+  }
+
+  .profileTitleClass {
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  .theLabelClass {
+    color: hsla(225, 2%, 62%, 1);
+    position: absolute;
+    transform: translate(10px, 5px);
+  }
+
+  .theImageClass {
+    position: absolute;
+    transform: translate(36.75vw, 11px);
+    width: 18px;
+    padding: 10px;
+    height: auto;
+    cursor: pointer;
+  }
+
+  .parentLabelClass {
+    position: relative;
+    
+  }
+
+  .maxUploadClass {
+    color: hsla(220, 2%, 76%, 1);
+    font-weight: 400;
+  }
+
+  .dropDownMenuSettings {
+    background-color: rgb(54, 62, 65);
+    border: 1px solid hsla(250, 81%, 94%, 0.23);
+    border-radius: 24px;
+    padding: 20px;
+    width: 300px;
+    height: 200px;
+    position: fixed;
+    top: 50%;
+    align-self: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    gap: 80px;
+    z-index: -999;
+    display: hidden;
+  }
+
+  .visibleOn {
+    z-index: 9999;
+    opacity: 1;
+    display: flex;
+  }
+
+  .overlays {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .dropDownMenuSettings1 {
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dropDownMenuSettings2 {
+
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    position: absolute;
+    transform: translate(0px, 160px);
+  }
+
+  .dropDownMenuSettings2 > button {
+    background-color: red;
+    color: white;
+    border: 1px solid hsla(249, 4%, 36%, 0.23);
+    padding: 5px;
+    height: 30px;
+    border-radius: 24px;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  .dropDownMenuSettings2 > button:hover {
+    opacity: 1;
+    /* border: 1px solid black; */
+  }
+
+  .buttonBlue {
+    background-color: blue !important;
+  }
+
+  .subProperty1 {
+    color: hsla(0, 0%, 100%, 1);
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  .subProperty2 {
+    color: hsla(0, 0%, 100%, 1);
+    font-size: 18px;
+  }
+
+  .profileFlexSub1 {
+    display: flex;
+    gap: 10px;
+  }
+
+  .profileFlexSub2 {
+    display: flex;
+    justify-content: right;
+  }
+
+  .subProperty3 {
+    all: unset;
+    padding: 10px;
+    background-color: hsla(192, 5%, 19%, 1);
+    color: hsla(0, 0%, 100%, 1);
+    border-radius: 48px;
+    cursor: pointer;
+    width: 50%;
+    font-size: 18px;
+    height: 40px;
+    text-align: center;
+  }
+
+  .subProperty3:hover {
+    background-color: rgb(94, 100, 102);
+  }
+
+  .customGapProperty1 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }

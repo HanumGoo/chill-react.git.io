@@ -25,7 +25,7 @@ function LoginForm() {
     if (formData.username === "sheehan" && formData.password === "akusayangkucing321")
     {
       alert("okay got it right, process go to the lobby...");
-      navigate("/Lobby");
+      navigate("/Lobby/series");
     }
   }
 
