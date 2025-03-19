@@ -115,6 +115,10 @@
       .theImageClass {
         transform: translate(70vw, 11px) !important;
       }
+
+      .ProfileFlex1 {
+        gap: 10vw !important;
+      }
     
 
 }

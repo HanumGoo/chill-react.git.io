@@ -16,7 +16,7 @@ function App() {
         <Route path='/register' element={<RegisterForm />} />
 
 
-        <Route path='/Lobby/series' element={<LobbyForm />} />
+        <Route path='/lobby/series' element={<LobbyForm />} />
         <Route path='series' />
         
         <Route path='/lobby/profile' element={<GlobalState><ProfileForm /></GlobalState>} />
