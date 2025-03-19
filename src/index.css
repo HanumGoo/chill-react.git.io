@@ -864,7 +864,7 @@ p {
     width: 85%;
     padding: 5vw;
     display: flex;
-    border: 1px solid yellow;
+    border: 1px solid transparent;
     align-self: center;
     position: relative;
   }
