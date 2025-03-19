@@ -1084,3 +1084,8 @@ p {
     flex-direction: column;
     gap: 10px;
   }
+
+  .waitMoment {
+    background-color: black;
+    color: white;
+  }

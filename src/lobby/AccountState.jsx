@@ -12,14 +12,14 @@ function GlobalState( {children} ) {
 
     useEffect(() => {
         
-        const accountObjectJson = fetch("/public/Profile.json").then((response) => response.json()).then((data) => setIsAccountData(data));
+        const accountObjectJson = fetch("/Profile.json").then((response) => response.json()).then((data) => setIsAccountData(data));
         
 
     }, [])
     
     if (isAccountData === null)
     {
-        return <div>wait...</div>
+        return <div className="waitMoment">wait...</div>
     }
 
     return (
