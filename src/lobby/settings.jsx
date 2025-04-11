@@ -2,29 +2,58 @@ import Header from './Header'
 import Footer from './Footer'
 import PopupMenuSettings from './PopupMenuSettings'
 import ImageSliderSettings from './ImageSlider-settings'
-import accountImage from './assets/bagian-akun/sutokkinggu.jpg'
 import uploadImage from './assets/bagian profile settings/Vector (2).png'
 import pencil from './assets/bagian profile settings/pensil.png'
 import warning from './assets/bagian profile settings/Warning.png'
 import { useState, useRef } from 'react'
-import { globalAccountObjectJson } from './AccountState'
+import { globalEventUpdateAccountAPIObjectJson, globalAccountAPIObjectJson, globalAccountObjectJson } from './AccountState'
 import { useContext } from 'react'
+import { useEffect } from 'react'
 
 
 
 function LobbyForm() {
 
+  //untuk menggunakan API JSON
+  // userData.account.username
+  // userData.account.password
+  // userData.account.email
+
+  // eslint-disable-next-line no-unused-vars
+  const [userDataAPI, setUserDataAPI] = useState(useContext(globalAccountAPIObjectJson));
+  // eslint-disable-next-line no-unused-vars
   const [userData, setUserData] = useState(useContext(globalAccountObjectJson));
-  const [userDataUsername, setUserDataUsername] = useState(userData.account.username);
-  const [userDataPassword, setUserDataPassword] = useState(userData.account.password);
+  const userEventUpdateDataAPI = useContext(globalEventUpdateAccountAPIObjectJson);
+  const [userDataUsername, setUserDataUsername] = useState(null);
+  const [userDataUsernameAPI, setUserDataUsernameAPI] = useState(null);
+  const [userDataPassword, setUserDataPassword] = useState(null);
+  const [userDataPasswordAPI, setUserDataPasswordAPI] = useState(null);
+  const [userDataEmail, setUserDataEmail] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [userDataEmailAPI, setUserDataEmailAPI] = useState(null);
+  const [imagePaper, setImagePaper] = useState(null);
   const [messageSubmit, setMessageSubmit] = useState(false);
-  console.log(userData.account.username);
+  // console.log(userData.account.username);
   
   const [isReadOnly1, setIsReadOnly1] = useState(true);
   const [isReadOnly2, setIsReadOnly2] = useState(true);
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
 
+  // login data pakai api
+  useEffect(() => {
+    const theDataT = userDataAPI;
+    // console.log(theDataT);
+    setUserDataUsername(theDataT.username);
+    setUserDataPassword(theDataT.password);
+    setUserDataEmail(theDataT.email);
+    setUserDataUsernameAPI(theDataT.username);
+    setUserDataPasswordAPI(theDataT.password);
+    setUserDataEmailAPI(theDataT.email);
+    setImagePaper(theDataT.avatar);
+    // console.log(userDataEmail);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   function ChangeUsername() {
     const isTrue = !isReadOnly1;
@@ -57,6 +86,29 @@ function LobbyForm() {
     setIsReadOnly2(true);
   }
 
+  function onClickEventButton() {
+    if (userDataUsername === userDataUsernameAPI || userDataPassword === userDataPasswordAPI)
+      {
+        alert('hey username/password yang kamu ganti tidak bisa sama dengan yang dahulu');
+        setMessageSubmit((prev) => !prev);
+      }
+      else if (!userDataUsername)
+      {
+        alert('hey username yang kamu ganti tidak bisa kosong!')
+        setMessageSubmit((prev) => !prev);
+      }
+      else 
+      {
+        alert('success walau belum diupdate ke database');
+        userEventUpdateDataAPI(userDataUsername, userDataPassword);
+        setMessageSubmit((prev) => !prev);
+      }
+  }
+
+  function ofnothing() {
+
+  }
+
 
   return (
     <>
@@ -64,7 +116,7 @@ function LobbyForm() {
     {/* Header */}
     <Header />
 
-    <PopupMenuSettings visibleFunction={onClickSubmit} visibleStatus={messageSubmit} userCurrentUsername={userDataUsername} userJsonUsername={userData.account.username} userCurrentPassword={userDataPassword} userJsonPassword={userData.account.password} />
+    <PopupMenuSettings visibleFunction={onClickSubmit} onClickEventButton={onClickEventButton} visibleStatus={messageSubmit} userCurrentUsername={userDataUsername} userJsonUsername={userDataUsernameAPI} userCurrentPassword={userDataPassword} userJsonPassword={userDataPasswordAPI} />
 
     {/* isi profile */}
     <div className='ProfileFlexParent'>
@@ -76,7 +128,7 @@ function LobbyForm() {
 
           <div className='ProfileFlex1'>
             <div>
-              <img className='accountLogoLobby1' src={accountImage} />
+              <img className='accountLogoLobby1' src={imagePaper} />
             </div>
             <div className='profileFlex2'>
               <button className='changeImageButton'>Ubah Foto</button>
@@ -88,21 +140,21 @@ function LobbyForm() {
             
           </div>
           <div className='parentLabelClass'>
-                  <label for='username' class='theLabelClass'>Nama Pengguna</label>
+                  <label htmlFor='username' className='theLabelClass'>Nama Pengguna</label>
                   <img src={pencil} className='theImageClass' alt='pencil' title='change account information'  onClick={ChangeUsername} />
-                  <input ref={inputRef1} maxLength="20" id='username' type='text' className={!isReadOnly1 ? "inputChangeAccount activeInputChangeAccount" : "inputChangeAccount"} readOnly={isReadOnly1} value={userDataUsername} onChange={OnChangeAccountUsername} autoComplete='off' />
+                  <input ref={inputRef1} maxLength="20" id='username' type='text' className={!isReadOnly1 ? "inputChangeAccount activeInputChangeAccount" : "inputChangeAccount"} readOnly={isReadOnly1} value={userDataUsername || null} onChange={OnChangeAccountUsername} autoComplete='off' />
           </div>
                   
           <div className='parentLabelClass'>
-                  <label for='email' class='theLabelClass'>Email</label>
+                  <label htmlFor='email' className='theLabelClass'>Email</label>
 
-                  <input id='email' type='text' className='inputChangeAccount' value={userData.account.email} />
+                  <input id='email' type='text' className='inputChangeAccount' onChange={ofnothing} value={userDataEmail || null} />
           </div>
                   
           <div className='parentLabelClass'>
-                  <label for='password' class='theLabelClass'>Kata Sandi</label>
+                  <label htmlFor='password' className='theLabelClass'>Kata Sandi</label>
                   <img src={pencil} className='theImageClass' alt='pencil' title='change account information' onClick={ChangePassword} />
-                  <input ref={inputRef2} maxLength="20" id='password' type='text' className={!isReadOnly2 ? "inputChangeAccount activeInputChangeAccount" : "inputChangeAccount"} readOnly={isReadOnly2} value={userDataPassword} onChange={OnChangeAccountPassword} autoComplete='off' />
+                  <input ref={inputRef2} maxLength="20" id='password' type='text' className={!isReadOnly2 ? "inputChangeAccount activeInputChangeAccount" : "inputChangeAccount"} readOnly={isReadOnly2} value={userDataPassword || null} onChange={OnChangeAccountPassword} autoComplete='off' />
           </div>
         
 

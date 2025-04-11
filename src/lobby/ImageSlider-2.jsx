@@ -109,14 +109,14 @@ function ImageSlider() {
             myChoice.map((move, index) => {
 
                 return (
-                    <>
-                    <div>
+                    
+                    <div key={index}>
                     <button onMouseEnter={(event) => onMouseEnterEvent(event)} onMouseLeave={(event) => onMouseLeaveEvent(event)} onClick={(event) => popupEvent(event.currentTarget.querySelector("img"), move)} className='unset buttonSlider' key={index}>
                     <img className={fading ? "imagesliderthing1 active" : "imagesliderthing1"} src={move} />  
                     </button>
                     <Popupmenu trueState={conditionElement} sourceData={move === hoveredImage ? move : "none"} className={move === hoveredImage ? "popupMenuVisible" : ""} />
                     </div>
-                    </>
+                    
                     )
             }
             )

@@ -4,29 +4,80 @@ import eyeLogo from './assets/Vector.png'
 import { Link } from 'react-router'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import PopupMenuSettings from './PopupMenuSettings'
 
 function LoginForm() {
 
   const [formData, setFormData] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isMessage, setIsMessage] = useState(null);
 
   const navigate = useNavigate();
 
   function handleChange(e) {
-    console.log("this is runnin");
     setFormData({...formData, [e.target.name]: e.target.value});
   }
 
-  function handleSubmit(e) {
-    console.log("submit is runnin");
+ 
+      
+      
+
+
+  async function handleSubmit(e) {
     e.preventDefault();
 
+    const username = e.target.username.value;
+    const password = e.target.password.value;
 
-      console.log();
-    if (formData.username === "sheehan" && formData.password === "akusayangkucing321")
-    {
-      alert("okay got it right, process go to the lobby...");
-      navigate("/Lobby/series");
-    }
+      const response = await fetch(`https://67e3a95d2ae442db76d0faf3.mockapi.io/api/v1/account-user?username=${username}&password=${password}`);
+
+      if (response.status === 404)
+      {
+        loginFailed();
+        return;
+      }
+    
+      if (response.ok)
+      {
+        const allUser = await response.json();
+        const userCheck = allUser.find((user) => user.username === username);
+        
+        if (userCheck)
+        {
+          sessionStorage.setItem("user-id", userCheck.id);
+          loginSuccess();
+          return;
+        }
+
+        loginFailed();
+        return;
+      }
+      else {
+        loginFailed();
+        return;
+      }
+      
+  }
+
+  function onClickButtonEvent() {
+    isSuccess && navigate("/Lobby/series");
+    setIsOpen(false);
+    return;
+  }
+
+  function loginSuccess() {
+    setIsOpen(true);
+    setIsSuccess(true);
+    setIsMessage("Login Success! navigating to the lobby");
+    return;
+  }
+
+  function loginFailed() {
+    setIsOpen(true);
+    setIsSuccess(false);
+    setIsMessage("Login Failed! wrong username or password. Try again");
+    return;
   }
 
   const [showPassword, setShowPassword] = useState(false);
@@ -38,6 +89,7 @@ function LoginForm() {
   return (
     <>
     <div className='containerBody'>
+    <PopupMenuSettings visibleStatus={isOpen} status={isSuccess} buttonClick={onClickButtonEvent} isMessage={isMessage} />
     <div className='container'>
 
     
@@ -77,10 +129,6 @@ function LoginForm() {
             </button>
           </div>
      </div>
-     
-    <p>akun untuk ke lobby(sementara)</p>
-    <p>username: sheehan</p>
-    <p>password: akusayangkucing321</p>
      </form>
      </div>
      </div>
