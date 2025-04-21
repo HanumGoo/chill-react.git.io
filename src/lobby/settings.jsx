@@ -99,7 +99,7 @@ function LobbyForm() {
       }
       else 
       {
-        alert('success walau belum diupdate ke database');
+        alert('success');
         userEventUpdateDataAPI(userDataUsername, userDataPassword);
         setMessageSubmit((prev) => !prev);
       }
