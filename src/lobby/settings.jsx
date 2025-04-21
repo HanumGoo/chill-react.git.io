@@ -87,9 +87,9 @@ function LobbyForm() {
   }
 
   function onClickEventButton() {
-    if (userDataUsername === userDataUsernameAPI || userDataPassword === userDataPasswordAPI)
+    if (userDataPassword === userDataPasswordAPI)
       {
-        alert('hey username/password yang kamu ganti tidak bisa sama dengan yang dahulu');
+        alert('hey password yang kamu ganti tidak bisa sama dengan yang dahulu');
         setMessageSubmit((prev) => !prev);
       }
       else if (!userDataUsername)
